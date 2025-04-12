@@ -27,7 +27,7 @@ for i=1:length(Test_name)
         %     Praticle_size = 30;
         % end
         if Algorithm_Index ~= 3 && Algorithm_Index ~= 4 && Algorithm_Index ~= 5
-            All_Fitness(:, Algorithm_Index) = Result.(Test_name_fields(i)).(Method_name_fields(Algorithm_Index)).All_Fitness;
+            All_Fitness(:, Algorithm_Index) = Result.(Test_name_fields(i)).All_Fitness(:, Algorithm_Index);
             continue;
         end
         Algorithm_name = Method_name(Algorithm_Index);
