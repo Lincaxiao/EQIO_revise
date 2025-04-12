@@ -2,10 +2,12 @@
 load('IEEE30_non_random_multi_Result.mat');
 Test_name = ["30_Cost_with_Tax", "30_Ploss", ...
     "30_Voltage_Deviation", "30_Cost_Ploss", "30_Cost_VD", "30_Cost_Tax_Ploss_VD"];
-Method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+% Method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+Method_name = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
 Test_name_fields = matlab.lang.makeValidName(Test_name);
 Method_name_fields = matlab.lang.makeValidName(Method_name);
-Write_method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+% Write_method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+Write_method_name = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
 
 % 从IEEE30_non_random_Result中获取迭代曲线
 Iteration_Curve = zeros(length(Test_name), length(Method_name), 150);
