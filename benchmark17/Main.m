@@ -2,7 +2,7 @@ clear;
 clc
 close all;
 
-pop_size = 40; % 种群数目
+pop_size = 30; % 种群数目
 max_iter = 1000; % 迭代次数
 
 run = 30; % 运行次数
@@ -28,9 +28,9 @@ else
 end
 %%% GA, ABC, GWO ==> PO, CPO, PLO
 Algorithms = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
-for h = 1:length(dim_case)
+for h = 3:3%1:length(dim_case)
     nVar = dim_case(h);
-    for i = 1:length(F)
+    for i = 2:2%1:length(F)
         number = F(i);
         [lower_bound,upper_bound,dim,fobj]=Get_Functions_cec2017(number,nVar);
         for j = 1:run
@@ -44,6 +44,7 @@ for h = 1:length(dim_case)
             %% 除了 PO, CPO, PLO, 其他算法的结果已经在 result_matrix 中
             PSO_score = result_matrix(i, h, 1, j) + 100 * F(i);
             TSO_score = result_matrix(i, h, 2, j) + 100 * F(i);
+
             [PO_score, ~, PO_curve] = PO(fobj, lower_bound, upper_bound, dim, pop_size, max_iter);
             [CPO_score, ~, CPO_curve] = CPO(fobj, lower_bound, upper_bound, dim, pop_size, max_iter);
             [PLO_score, ~, PLO_curve] = PLO(fobj, lower_bound, upper_bound, dim, pop_size, max_iter);

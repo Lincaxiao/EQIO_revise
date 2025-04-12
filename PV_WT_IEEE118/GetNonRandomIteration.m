@@ -1,11 +1,14 @@
 %% 获取IEEE118的迭代曲线
 %% 假设工作区已经有一个名为IEEE118_non_random_multi_Result的变量
+load("IEEE118_non_random_multi_Result.mat");
 Test_name = ["118_Cost_Base", "118_Ploss", "118_Voltage_Deviation",...
             "118_Cost_Ploss", "118_Cost_VD", "118_Cost_Ploss_VD"];
-Method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+% Method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+Method_name = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
 Test_name_fields = matlab.lang.makeValidName(Test_name);
 Method_name_fields = matlab.lang.makeValidName(Method_name);
-Write_method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+% Write_method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+Write_method_name = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
 
 % 从IEEE118_non_random_Result中获取迭代曲线
 Iteration_Curve = zeros(length(Test_name), length(Method_name), 150);

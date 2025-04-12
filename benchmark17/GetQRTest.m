@@ -1,6 +1,7 @@
 load("stored_arrays.mat", "score_matrix");
 
-Algorithms = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+% Algorithms = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+Algorithms = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
 %% score_matrix 的形状为 (F, dim, 8)
 Max_score = max(score_matrix, [], 3);
 Min_score = min(score_matrix, [], 3);

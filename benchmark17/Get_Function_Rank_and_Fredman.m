@@ -1,6 +1,7 @@
 load("stored_arrays.mat");
 %% 定义算法名称和维度
-Algorithms = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+% Algorithms = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+Algorithms = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
 dim_case = [30, 50, 100];
 F = [1, 3:30]; % 移除第二个函数（2）
 

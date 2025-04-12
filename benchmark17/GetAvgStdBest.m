@@ -2,7 +2,8 @@ load("stored_arrays.mat");
 % * 工作区有 mean_matrix: (29, 3, 8), std_matrix: (29, 3, 8), score_matrix: (29, 3, 8)
 % * 文件名为 AvgStdBest.xlsx，分为 29 个 sheet, sheet 名字是 "F"+数字, 数字是 1-30 except 2
 Row = ["Algorithm", "30-Best", "30-Mean", "30-Std", "50-Best", "50-Mean", "50-Std", "100-Best", "100-Mean", "100-Std"];
-Column = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+% Column = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+Column = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
 % * 生成工作表名称
 File_name = 'AvgStdBest.xlsx';
 Data_matrix = zeros(8, 9);

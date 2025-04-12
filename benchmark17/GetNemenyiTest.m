@@ -5,7 +5,8 @@ alpha = 0.05;
 
 best_score = score_matrix(:, :, :);
 rank_matrix = zeros(29, 3, 8);
-Algorithms = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+% Algorithms = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+Algorithms = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
 for dim =1:3
     %% 进行 Dunn 检验
     All_fitness = squeeze(best_score(:, dim, :));

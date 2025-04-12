@@ -1,6 +1,8 @@
 load("stored_arrays.mat");
 %% 工作区现在有 curve_matrix 数组
-Algorithms = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+% Algorithms = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+Algorithms = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
+
 max_iter = 1000;
 %% Excel文件名为 CEC2017_Iteration.xlsx，分为3*29个sheet
 filename = 'CEC2017_Iteration.xlsx';

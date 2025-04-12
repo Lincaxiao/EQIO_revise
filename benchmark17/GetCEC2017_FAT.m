@@ -5,8 +5,8 @@
 % where $R_i$ is the rank total of $i$th problem and $R_j$ is the rank total of $j$th algorithm, $k$ is the number of algorithms and $n$ is the number of problems. The smaller the average of $R_i$, the better the rank of the corresponding algorithm.
 load('stored_arrays.mat', 'score_matrix');
 
-Algorithms = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
-
+%Algorithms = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+Algorithms = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
 %% 从 score_matrix 中得到 rank 矩阵
 % best_score 形状为 (F, dim, 8)
 best_score = score_matrix(:, :, :);
