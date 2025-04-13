@@ -4,8 +4,10 @@
 load('IEEE118_topo_Result.mat');
 Test_name = ["118_Cost_Base", "118_Ploss", "118_Voltage_Deviation", ...
             "118_Cost_Ploss", "118_Cost_VD", "118_Cost_Ploss_VD"];
-Method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
-Write_method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+% Method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+Method_name = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
+% Write_method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+Write_method_name = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
 
 % 将 Test_name 和 Method_name 转换为有效的字段名称
 Test_name_fields = matlab.lang.makeValidName(Test_name);

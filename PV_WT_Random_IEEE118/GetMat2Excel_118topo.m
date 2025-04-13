@@ -16,9 +16,11 @@ end
 % excel 文件名为 IEEE118_topo_Result.xlsx
 % sheet 名称为 Test_name
 % 第一行为 Method_name
-Method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+% Method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+Method_name = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
 Method_name_fields = matlab.lang.makeValidName(Method_name);
-Write_method_name = ["Grid index", "PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+% Write_method_name = ["Grid index", "PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
+Write_method_name = ["Grid index", "PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
 for i = 1:length(Test_name)
     Tmp_array = zeros(100, 9);
     Tmp_array(:, 1) = 1:100;

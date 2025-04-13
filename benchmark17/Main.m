@@ -2,7 +2,7 @@ clear;
 clc
 close all;
 
-pop_size = 30; % 种群数目
+pop_size = 20; % 种群数目
 max_iter = 1000; % 迭代次数
 
 run = 30; % 运行次数
@@ -26,11 +26,12 @@ if ~exist('stored_arrays.mat', 'file')
 else
     load('stored_arrays.mat');
 end
-%%% GA, ABC, GWO ==> PO, CPO, PLO
-Algorithms = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
-for h = 3:3%1:length(dim_case)
+%%% GA, ABC, GWO ==> PO, CPO, DOA
+%Algorithms = ["PSO", "TSO", "PO", "CPO", "DOA", "TLBO", "QIO", "EQIO"];
+Algorithms = ["PSO", "TSO", "PO", "IVY", "DOA", "TLBO", "QIO", "EQIO"]; %% IVY替代CPO
+for h = 1:length(dim_case)
     nVar = dim_case(h);
-    for i = 2:2%1:length(F)
+    for i = 1:length(F)
         number = F(i);
         [lower_bound,upper_bound,dim,fobj]=Get_Functions_cec2017(number,nVar);
         for j = 1:run
@@ -41,13 +42,13 @@ for h = 3:3%1:length(dim_case)
             % [TLBO_score, ~, TLBO_curve] = TLBO(fobj, lower_bound, upper_bound, dim, pop_size, max_iter);
             % [QIO_score, ~, QIO_curve] = QIO(fobj, lower_bound, upper_bound, dim, pop_size, max_iter);
             % [EQIO_score, ~, EQIO_curve] = EQIO(fobj, lower_bound, upper_bound, dim, pop_size, max_iter);
-            %% 除了 PO, CPO, PLO, 其他算法的结果已经在 result_matrix 中
+            %% 除了 IVY 其他算法的结果已经在 result_matrix 中
             PSO_score = result_matrix(i, h, 1, j) + 100 * F(i);
             TSO_score = result_matrix(i, h, 2, j) + 100 * F(i);
 
             [PO_score, ~, PO_curve] = PO(fobj, lower_bound, upper_bound, dim, pop_size, max_iter);
-            [CPO_score, ~, CPO_curve] = CPO(fobj, lower_bound, upper_bound, dim, pop_size, max_iter);
-            [PLO_score, ~, PLO_curve] = PLO(fobj, lower_bound, upper_bound, dim, pop_size, max_iter);
+            [IVY_score, ~, IVY_curve] = IVY(fobj, lower_bound, upper_bound, dim, pop_size, max_iter);
+            [DOA_score, ~, DOA_curve] = DOA(fobj, lower_bound, upper_bound, dim, pop_size, max_iter);
             TLBO_score = result_matrix(i, h, 6, j) + 100 * F(i);
             QIO_score = result_matrix(i, h, 7, j) + 100 * F(i);
             EQIO_score = result_matrix(i, h, 8, j) + 100 * F(i);
@@ -60,12 +61,14 @@ for h = 3:3%1:length(dim_case)
             % result_matrix(i, h, 6, j) = TLBO_score - 100 * F(i);
             % result_matrix(i, h, 7, j) = QIO_score - 100 * F(i);
             % result_matrix(i, h, 8, j) = EQIO_score - 100 * F(i);
-            result_matrix(i, h, 3, j) = PO_score;
-            result_matrix(i, h, 4, j) = CPO_score;
-            result_matrix(i, h, 5, j) = PLO_score;
+            % result_matrix(i, h, 3, j) = PO_score;
+            result_matrix(i, h, 3, j) = PO_score - 100 * F(i);
+            result_matrix(i, h, 4, j) = IVY_score - 100 * F(i);
+            result_matrix(i, h, 5, j) = DOA_score - 100 * F(i);
+            % result_matrix(i, h, 5, j) = DOA_score;
             %% 存储迭代曲线
             for k = 1:8
-                if k <= 2 || k >= 6
+                if k < 3 || k > 5
                     continue; % 跳过GA, ABC, GWO
                 end
                 current_score = result_matrix(i, h, k, j);
@@ -78,9 +81,9 @@ for h = 3:3%1:length(dim_case)
                         case 3
                             curve_matrix(i, h, k, :) = PO_curve;
                         case 4
-                            curve_matrix(i, h, k, :) = CPO_curve;
+                            curve_matrix(i, h, k, :) = IVY_curve;
                         case 5
-                            curve_matrix(i, h, k, :) = PLO_curve;
+                            curve_matrix(i, h, k, :) = DOA_curve;
                         % case 6
                         %     curve_matrix(i, h, k, :) = TLBO_curve;
                         % case 7
@@ -107,9 +110,9 @@ for h = 3:3%1:length(dim_case)
         %% 打印EQIO和QIO的最优结果在所有算法的最优结果里相应的排名
         [~, rank] = sort(score_matrix(i, h, :));
         fprintf('EQIO is ranked %d, QIO is ranked %d\n', find(rank == 8), find(rank == 7));
-        %% 打印三个 PO，CPO, PLO 算法的最优结果在所有算法的最优结果里相应的排名
+        %% 打印三个 PO，CPO, DOA 算法的最优结果在所有算法的最优结果里相应的排名
         [~, rank] = sort(score_matrix(i, h, :));
-        fprintf('PO is ranked %d, CPO is ranked %d, PLO is ranked %d\n', find(rank == 3), find(rank == 4), find(rank == 5));
+        fprintf('PO is ranked %d, IVY is ranked %d, DOA is ranked %d\n', find(rank == 3), find(rank == 4), find(rank == 5));
     end
 end
 %% 先储存

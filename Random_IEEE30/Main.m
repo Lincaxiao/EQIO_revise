@@ -9,7 +9,7 @@ end
 Test_name = ["30_Cost_with_Tax", "30_Ploss", ...
         "30_Voltage_Deviation", "30_Cost_Ploss", "30_Cost_VD", "30_Cost_Tax_Ploss_VD"];
 % Method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
-Method_name = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
+Method_name = ["PSO", "TSO", "PO", "IVY", "DOA", "TLBO", "QIO", "EQIO"];
 
 % 将 Test_name 和 Method_name 转换为有效的字段名称
 Test_name_fields = matlab.lang.makeValidName(Test_name);
@@ -27,7 +27,7 @@ for i = 1:length(Test_name)
         %     Praticle_size = 30;
         % end
         %% 如果不是 PO，CPO，PLO，则直接读取原来的数据
-        if Algorithm_Index ~= 3 && Algorithm_Index ~= 4 && Algorithm_Index ~= 5
+        if Algorithm_Index ~= 4 && Algorithm_Index ~= 5
             All_Fitness(:, Algorithm_Index) = Result.(Test_name_fields(i)).All_Fitness(:, Algorithm_Index);
             continue;
         end

@@ -11,7 +11,7 @@ end
 Test_name = ["30_Cost_with_Tax", "30_Ploss",...
     "30_Voltage_Deviation", "30_Cost_Ploss", "30_Cost_VD", "30_Cost_Tax_Ploss_VD"];
 % Method_name = ["PSO", "TSO", "GA", "ABC", "GWO", "TLBO", "QIO", "EQIO"];
-Method_name = ["PSO", "TSO", "PO", "CPO", "PLO", "TLBO", "QIO", "EQIO"];
+Method_name = ["PSO", "TSO", "PO", "IVY", "DOA", "TLBO", "QIO", "EQIO"];
 Pop_number = 20;
 Max_Iteration = 150;
 
@@ -23,7 +23,7 @@ tic;
 for i=1:length(Test_name)
     [lb, ub, dim, fobj] = Get_function_details(Test_name(i));
     [lb, ub, dim, fobj_non_penalty] = Get_function_details_without_penalty(Test_name(i));
-    for j=3:5%1:length(Method_name)
+    for j=4:5%3:5%1:length(Method_name)
         if j ~= 8
             Pop_number = 20;
         else
